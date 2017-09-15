@@ -79,7 +79,7 @@ export default class Login extends Component {
 				errorMsg: msg
 			})
 
-			return;
+			return
 		}
 
 		postLoginId({
@@ -89,8 +89,8 @@ export default class Login extends Component {
 			username: this.state.userName,
 			password: MD5(this.state.passWord)
 		})
-		.then(resp => this.callComit(resp))
-        .catch(err => console.log(err))
+		.then(resp => alert('登陆成功'))
+        .catch(err => this.callComit())
 
 		event.preventDefault()
 	}
@@ -112,16 +112,10 @@ export default class Login extends Component {
 		return msg
 	}
 
-	callComit (resp) {
-		if (resp.msg !== 'ok') {
-			this.setState({
-				errorMsg: resp.msg
-			})
-
-			return
-		}
-
-		alert('登陆成功')
+	callComit () {
+		this.setState({
+			errorMsg: 'todo test error'
+		})
 	}
 
 	render () {
