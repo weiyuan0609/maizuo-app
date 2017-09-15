@@ -133,7 +133,7 @@ export default class Login extends Component {
 							</span>
 						</div>
 						<div className="form-group">
-							<input type="text" placeholder="输入密码/验证码" value={this.state.passWord} onChange={e => this.handleChange(e, 'passWord')}/>
+							<input type="password" placeholder="输入密码/验证码" value={this.state.passWord} onChange={e => this.handleChange(e, 'passWord')}/>
 							<div className="input-bg"></div>
 						</div>
 						<span className="error-msg">{this.state.errorMsg}</span>
