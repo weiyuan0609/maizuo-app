@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { fetchImages, fetchNowPlaying, fetchComingSoon } from '@/service/getData'
 
-import NowPlayingItems from '@/container/nowPlayingItems'
-import Slide from '@/container/Slide'
-import ComingSoonItems from '@/container/ComingSoonItems'
-import Header from './header'
+import NowPlayingItems from 'components/NowPlayingItems'
+import Slide from 'components/Slide'
+import ComingSoonItems from 'components/ComingSoonItems'
+import Header from 'container/header'
 
 
 export default class Content extends Component {
@@ -19,31 +18,21 @@ export default class Content extends Component {
   }
 
   componentDidMount () {
+    const { fetchImages, fetchNowPlaying, fetchComingSoon } = this.props
     fetchImages()
-      .then(resp =>
-          this.setState({images: this.formatterImages(resp.data.billboards)}))
-      .catch(err => console.log(err))
-
     fetchNowPlaying()
-      .then(resp =>
-          this.setState({nowPlaying: resp.data.films}))
-      .catch(err => console.log(err))
-
     fetchComingSoon()
-      .then(resp =>
-        this.setState({comingSoon: resp.data.films}))
-      .catch(err => console.log(err))
 
   }
 
   formatterImages (array) {
-    if (Array.isArray(array)) {
+    if (Array.isArray(array) && array.length > 0) {
       while (array.length < 3) {
         array.push(array[0])
       }
     }
 
-    return array
+    return array || []
   }
 
   render () {
@@ -51,9 +40,9 @@ export default class Content extends Component {
       <div className="App">
         <Header {...this.props} title="卖座电影"></Header>
         <div className="slide">
-          <Slide items={this.state.images}></Slide>
-          <NowPlayingItems items={this.state.nowPlaying}></NowPlayingItems>
-          <ComingSoonItems items={this.state.comingSoon}></ComingSoonItems>
+          <Slide items={this.formatterImages(this.props.images)}></Slide>
+          <NowPlayingItems items={this.props.nowPlaying}></NowPlayingItems>
+          <ComingSoonItems items={this.props.comingSoon}></ComingSoonItems>
         </div>
       </div>
     )

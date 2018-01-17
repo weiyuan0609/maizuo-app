@@ -25,6 +25,29 @@ html, body {
   font-family: sans-serif;
 }
 
+.hide {
+  display: none;
+}
+
+.visibility-hide {
+  visibility: hidden;
+}
+
+.opacity-hide {
+  opacity: 0;
+}
+
+.opacity-show {
+  opacity: 1;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
 
 .header {
   width: 100%;
@@ -50,6 +73,37 @@ html, body {
     float: right;
     color: #efefef;
     margin-right: 20px;
+  }
+
+  .hide-menu {
+    left: -340px !important;
+  }
+
+  .menu {
+    position: absolute;
+    width: 340px;
+    height: 600px;
+    left: 0;
+    top: 50px;
+    background-color: #282828;
+    z-index: 999;
+    transition: all 0.3s;
+
+    ul {
+      @include listNone;
+    }
+
+    li {
+      //@include listNone;
+    }
+
+    &-item {
+      color: #9a9a9a;
+      line-height: 50px;
+      border: 1px solid #333;
+      padding: 0 10px;
+      font-size: 14px;
+    }
   }
 }
 
@@ -202,4 +256,7 @@ html, body {
   }
 }
 
-@import './city.scss';
+@import "./city.scss";
+@import "./login.scss";
+@import "./user.scss";
+@import "./cinema.scss";
